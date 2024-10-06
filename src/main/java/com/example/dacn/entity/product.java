@@ -40,14 +40,14 @@ public class product {
     @Column(name = "gia", nullable = false)
     private BigDecimal price;
 
-//    @Column(name = "thong_tin", nullable = false)
-//    private String information;
+    @Column(name = "thong_tin", nullable = false)
+    private String information;
 
     @Column(name = "loai", length = 50, nullable = false)
     private String category;
 
-//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-//    private List<comment> comments;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<comment> comments;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<service_package> servicePackages;

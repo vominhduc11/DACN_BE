@@ -31,7 +31,7 @@ public class comment {
     @JoinColumn(name = "id_nguoi_dung")
     private user user;
 
-//    @ManyToOne(fetch =FetchType.LAZY)
-//    @JoinColumn(name = "id_san_pham")
-//    private product product;
+    @ManyToOne(fetch =FetchType.LAZY)
+    @JoinColumn(name = "id_san_pham")
+    private product product;
 }
