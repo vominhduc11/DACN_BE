@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public class comment {
     private String name;
 
     @Column(name = "thoi_gian", nullable = false)
-    private LocalDateTime time;
+    private LocalDate time;
 
     @Column(name = "danh_gia", nullable = false)
     private float evaluate;
