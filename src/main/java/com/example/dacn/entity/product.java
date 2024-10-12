@@ -1,5 +1,6 @@
 package com.example.dacn.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +23,11 @@ public class product {
     @Column(name = "hinh_anh", nullable = false)
     private String image;
 
+    @Column(name = "sao", nullable = false)
+    private float star;
+
     @Column(name = "danh_gia", nullable = false)
-    private float evaluate;
+    private int evaluate;
 
     @Column(name = "da_dat", nullable = false)
     private int booked;
@@ -34,13 +38,18 @@ public class product {
     @Column(name = "vi_tri", nullable = false)
     private String place;
 
-    @Column(name = "diem_noi_bat", nullable = false)
+    @Lob
+    @Column(name = "diem_noi_bat", nullable = false, columnDefinition = "TEXT")
     private String highlight;
 
     @Column(name = "gia", nullable = false)
     private BigDecimal price;
 
-    @Column(name = "thong_tin", nullable = false)
+    @Column(name = "giam_gia", nullable = false)
+    private byte reduce_price;
+
+    @Lob
+    @Column(name = "thong_tin", nullable = false, columnDefinition = "TEXT")
     private String information;
 
     @Column(name = "loai", length = 50, nullable = false)
@@ -49,26 +58,25 @@ public class product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<comment> comments;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<service_package> servicePackages;
-
+    @JsonIgnore
     @ManyToOne(fetch =FetchType.LAZY)
     @JoinColumn(name = "id_thanh_pho")
     private city city;
 
+    @JsonIgnore
     @ManyToOne(fetch =FetchType.LAZY)
     @JoinColumn(name = "id_quoc_gia")
     private country country;
 
-    @OneToOne(mappedBy = "product",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToOne(mappedBy = "product",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private cart cart;
 
-    @OneToOne(mappedBy = "product",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToOne(mappedBy = "product",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private favorite favorite;
 
-    @OneToOne(mappedBy = "product",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToOne(mappedBy = "product",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private trip trip;
 
-    @OneToOne(mappedBy = "product",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToOne(mappedBy = "product",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private order order;
 }
