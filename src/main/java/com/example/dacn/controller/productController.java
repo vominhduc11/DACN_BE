@@ -13,7 +13,7 @@ public class productController {
     @Autowired
     private productService productService;
 
-    @CrossOrigin(origins = {"http://localhost:8081","http://127.0.0.1:5501"})
+    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping(value = "/getProduct/{id}")
     public product getProduct(@PathVariable("id") int id) {
         product product = productService.getProduct(id);
