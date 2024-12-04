@@ -57,6 +57,7 @@ public class productService {
                 put("isLike", b);
                 put("notify", product.getNotify());
                 put("place", product.getPlace());
+                put("address", product.getAddress());
                 put("highlight", product.getHighlight());
                 put("information", product.getInformation());
                 put("category", product.getCategory());

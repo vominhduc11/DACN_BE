@@ -30,7 +30,7 @@ public class orderService {
         // Tạo Gson instance
         Gson gson = new Gson();
         // Lấy tất cả đơn hàng từ dưới lên
-        List<order> orders = orderRepository.findAllByUserIdOrderByIdDesc(idUser);
+        List<order> orders = orderRepository.findAllByUserId(idUser);
 
         List<Map<String, Object>> orderDTOs = new ArrayList<>();
 
@@ -44,9 +44,9 @@ public class orderService {
                 put("image", order.getProduct().getImage());
                 put("name", order.getProduct().getName());
                 put("name_package", order.getName_package());
-                put("quantity", map);
+                put("quantitys", map);
             }};
-            orderDTOs.add(orderDTO);
+            orderDTOs.add(0,orderDTO);
         });
 
         return orderDTOs;
@@ -68,7 +68,7 @@ public class orderService {
                 condition = orderRepository.existsById(id);
             } while (condition);
             // Chuyển quantity thành chuỗi json
-            String s = gson.toJson(data.get("quantity"));
+            String s = gson.toJson(data.get("quantitys"));
 
             order order = new order();
             order.setId(id);

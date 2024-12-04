@@ -47,7 +47,7 @@ public class cartService {
                 Map<String, Object> package_serviceDTO = new HashMap<>() {{
                     put("id", package_service.getId());
                     put("name", package_service.getName());
-                    put("quantity", package_service.getQuantitys());
+                    put("quantitys", package_service.getQuantitys());
                 }};
                 package_serviceDTOs.add(package_serviceDTO);
             }
@@ -61,7 +61,7 @@ public class cartService {
                 put("name", cart.getProduct().getName());
                 put("id_package", cart.getPackageService().getId());
                 put("name_package", cart.getPackageService().getName());
-                put("quantity", map);
+                put("quantitys", map);
                 put("image", cart.getProduct().getImage());
                 put("cityId", cart.getProduct().getCity().getId());
                 put("city", cart.getProduct().getCity().getName());
@@ -85,7 +85,7 @@ public class cartService {
         return result;
     }
 
-    public void partialUpdateProductCart(int idPackage, int idProduct, int idUser, String quantity) {
+    public void partialUpdateProductCart(int idPackage, int idProduct, int idUser, String quantitys) {
         cart cart = cartRepository.findByPackageService_IdAndUser_Id(idPackage, idUser);  // Sản phẩm mà người dùng thêm vào chắc chắn có trong bảng giỏ hàng
         package_service package_service = package_serviceRepository.findById(idPackage).get(); // Gói mà người dùng đó thêm vào
         user user = userRepository.findById(idUser).get();  // Người dùng mà thêm sản phẩm
@@ -95,7 +95,7 @@ public class cartService {
 
         // Sử lí 2 quantity
         JsonArray array1 = JsonParser.parseString(quantity1).getAsJsonArray();
-        JsonArray array2 = JsonParser.parseString(quantity).getAsJsonArray();
+        JsonArray array2 = JsonParser.parseString(quantitys).getAsJsonArray();
 
         JsonArray mergedArray = mergeJsonArrays(array1, array2);
         String mergedArrayString = mergedArray.toString();
@@ -141,7 +141,7 @@ public class cartService {
 
 
         if (cart.getUsers().size() >= 1 && !cart.getUsers().contains(user)) {
-            if (quantity1.equals(quantity)) {
+            if (quantity1.equals(quantitys)) {
                 List<user> users = cart.getUsers();
                 users.add(user);
                 cartRepository.save(cart);
@@ -150,7 +150,7 @@ public class cartService {
                 cart cart1 = new cart();
                 cart1.setProduct(product);
                 cart1.setPackageService(package_service);
-                cart1.setQuantity(quantity);
+                cart1.setQuantity(quantitys);
                 // Khởi tạo danh sách users nếu null
                 if (cart1.getUsers() == null) {
                     cart1.setUsers(new ArrayList<>());
@@ -195,7 +195,7 @@ public class cartService {
         return result;
     }
 
-    public void addProductCart(int idProduct, int idPackage, int idUser, String quantity) {
+    public void addProductCart(int idProduct, int idPackage, int idUser, String quantitys) {
         Optional<product> productOptional = productRepository.findById(idProduct);
         product product = productOptional.get();
 
@@ -207,7 +207,7 @@ public class cartService {
 
         cart cart = new cart();
         cart.setProduct(product);
-        cart.setQuantity(quantity);
+        cart.setQuantity(quantitys);
         cart.setPackageService(package_service);
 
         // Khởi tạo danh sách users nếu null

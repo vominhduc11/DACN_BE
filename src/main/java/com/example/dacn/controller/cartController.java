@@ -34,8 +34,8 @@ public class cartController {
         int idPackage = (int) data.get("idPackage");
         int idUser = (int) data.get("idUser");
         int idProduct = (int) data.get("idProduct");
-        String quantity = (String) data.get("quantity");
-        cartService.partialUpdateProductCart(idPackage,idProduct ,idUser, quantity);
+        String quantitys = (String) data.get("quantitys");
+        cartService.partialUpdateProductCart(idPackage,idProduct ,idUser, quantitys);
     }
 
     // Thêm sản phẩm giỏ hàng
@@ -44,8 +44,8 @@ public class cartController {
         int idProduct = (int) data.get("idProduct");
         int idPackage = (int) data.get("idPackage");
         int idUser = (int) data.get("idUser");
-        String quantity = (String) data.get("quantity");
-        cartService.addProductCart(idProduct, idPackage, idUser, quantity);
+        String quantitys = (String) data.get("quantitys");
+        cartService.addProductCart(idProduct, idPackage, idUser, quantitys);
     }
 
     // Xóa sản phẩm giỏ hàng

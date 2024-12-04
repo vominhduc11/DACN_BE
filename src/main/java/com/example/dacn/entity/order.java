@@ -18,7 +18,7 @@ public class order {
     @Column(name = "ten_goi", nullable = false)
     private String name_package;
 
-    @Column(name = "so_luong", nullable = false)
+    @Column(name = "so_luong", nullable = false, columnDefinition = "TEXT" )
     private String quantity;
     @Column(name = "created_at")
     private LocalDateTime createdAt;

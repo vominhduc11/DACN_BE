@@ -12,9 +12,10 @@ import java.util.List;
 
 @Repository
 public interface orderRepository extends JpaRepository<order, String> {
-    List<order> findAllByUserIdOrderByIdDesc(int idUser);
     @Transactional
     @Modifying
     @Query("DELETE FROM don_hang e WHERE e.createdAt < :expirationTime")
     void deleteOldData(LocalDateTime expirationTime);
+
+    List<order> findAllByUserId(int idUser);
 }

@@ -22,8 +22,7 @@ public class orderController {
 
     // Thêm 1 đơn hàng
     @PostMapping(value = "/addOrder")
-    public List<Map<String, Object>> addOrder(@RequestParam("idUser") int idUser, @RequestBody List<Map<String, Object>> datas){
+    public void addOrder(@RequestParam("idUser") int idUser, @RequestBody List<Map<String, Object>> datas){
         orderService.addOrder(datas, idUser);
-        return datas;
     }
 }
