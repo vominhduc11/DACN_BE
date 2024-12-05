@@ -4,6 +4,7 @@ import com.example.dacn.entity.user;
 import com.example.dacn.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -20,8 +21,11 @@ public class userController {
     }
 
     @PostMapping(value = "/addUser")
-    public String addUser(@RequestBody user user) {
-        String result = userService.addUser(user);
+    public String addUser( @RequestParam("name") String name,
+                         @RequestParam("email") String email,
+                         @RequestParam("password") String password,
+                         @RequestParam("fileImage") MultipartFile multipartFile) {
+        String result = userService.addUser(name,email,password,multipartFile);
         return  result;
     }
 

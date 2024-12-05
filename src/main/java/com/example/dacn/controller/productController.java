@@ -87,6 +87,20 @@ public class productController {
         return products;
     }
 
+    @PatchMapping(value = "/update")
+    public void update(@RequestBody List<Map<String, Object>> datas) {
+        productService.update(datas);
+    }
+
+    @PatchMapping(value = "/updateMulti")
+    public void updateMulti(@RequestBody Map<String, Object> data) {
+        int idProduct = (int) data.get("idProduct");
+        Number star = (Number) data.get("star");
+        int evaluate = (int) data.get("evaluate");
+
+        productService.updateMulti(idProduct,star,evaluate);
+    }
+
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping(value = "/addProduct")
     public int addProduct(@RequestBody Map<String, Object> data) {

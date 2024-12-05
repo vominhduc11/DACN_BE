@@ -149,6 +149,7 @@ public class productService {
                 put("cityId", product.getCity().getId());
                 put("category", product.getCategory());
                 put("booked", product.getBooked());
+                put("evaluate", product.getEvaluate());
                 put("package", package_serviceDTOs);
             }};
 
@@ -186,6 +187,7 @@ public class productService {
                 put("cityId", product.getCity().getId());
                 put("category", product.getCategory());
                 put("booked", product.getBooked());
+                put("evaluate", product.getEvaluate());
                 put("package", package_serviceDTOs);
             }};
 
@@ -415,5 +417,27 @@ public class productService {
         product product1 = productRepository.save(product);
 
         return product1.getId();
+    }
+
+
+    public void update(List<Map<String, Object>> datas) {
+          datas.forEach(data -> {
+              product product = productRepository.findById((int) data.get("id")).get();
+              product.setBooked(((int) data.get("booked")) + 1);
+              productRepository.save(product);
+          });
+    }
+
+    public void updateMulti(int idProduct, Number star, int evaluate) {
+
+        product product = productRepository.findById(idProduct).get();
+        if(product.getStar() == 0){
+            product.setStar(star.floatValue());
+        }else{
+            float newStar = (float) (Math.round(star.floatValue() + product.getStar()) / 2.0);
+            product.setStar(newStar);
+        }
+        product.setEvaluate(evaluate + 1);
+        productRepository.save(product);
     }
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,11 +16,8 @@ public class comment {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "ten", nullable = false)
-    private String name;
-
     @Column(name = "thoi_gian", nullable = false)
-    private LocalDate time;
+    private LocalDateTime time;
 
     @Column(name = "danh_gia", nullable = false)
     private float evaluate;

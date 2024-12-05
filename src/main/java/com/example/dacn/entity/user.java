@@ -19,6 +19,9 @@ public class user {
     @Column(name = "ten", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "hinh_anh", nullable = false)
+    private String image;
+
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 

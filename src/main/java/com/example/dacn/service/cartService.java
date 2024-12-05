@@ -59,14 +59,15 @@ public class cartService {
             Map<String, Object> productDTO = new HashMap<>() {{
                 put("id", cart.getProduct().getId());
                 put("name", cart.getProduct().getName());
-                put("id_package", cart.getPackageService().getId());
-                put("name_package", cart.getPackageService().getName());
-                put("quantitys", map);
+                put("booked", cart.getProduct().getBooked());
                 put("image", cart.getProduct().getImage());
                 put("cityId", cart.getProduct().getCity().getId());
                 put("city", cart.getProduct().getCity().getName());
                 put("category", cart.getProduct().getCategory());
                 put("star", cart.getProduct().getStar());
+                put("id_package", cart.getPackageService().getId());
+                put("name_package", cart.getPackageService().getName());
+                put("quantitys", map);
                 put("package", package_serviceDTOs);
             }};
 

@@ -1,5 +1,6 @@
 package com.example.dacn.service;
 
+import com.example.dacn.entity.comment;
 import com.example.dacn.entity.country;
 import com.example.dacn.repository.countryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
